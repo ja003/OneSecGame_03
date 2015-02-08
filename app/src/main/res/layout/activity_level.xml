@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="400dp">
+
+    //top panel
+
+    //OPTIONS
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/viewableOptions"
+        android:visibility="visible">
+
+        //quest options 01
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="false"
+            android:focusable="false"
+            android:id="@+id/viewableOpt01"
+            android:visibility="invisible">
+
+            // green box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q01o01_yellowBox"
+                android:src="@drawable/box_yellow"
+                android:alpha="1"
+                android:visibility="visible"
+                android:layout_gravity="left|center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="25dp"/>
+
+            // yellow box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q01o02_yellowBox"
+                android:src="@drawable/box_yellow"
+                android:alpha="1"
+                android:layout_gravity="left|bottom"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="25dp"/>
+
+            // blue box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q01o03_blueBox"
+                android:src="@drawable/box_blue"
+                android:alpha="1"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="25dp"/>
+
+            // red box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q01o04_redBox"
+                android:src="@drawable/box_red"
+                android:alpha="1"
+                android:layout_gravity="left|center_vertical"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="25dp"/>
+
+
+        </RelativeLayout>
+
+        //quest 02 options
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:focusable="false"
+            android:id="@+id/viewableOpt02"
+            android:visibility="invisible">
+
+            // green box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q02o01_greenBox"
+                android:src="@drawable/box_green"
+                android:alpha="1"
+                android:visibility="visible"
+                android:layout_gravity="left|center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="25dp"/>
+
+            // yellow box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q02o02_yellowBox"
+                android:src="@drawable/box_yellow"
+                android:alpha="1"
+                android:layout_gravity="left|bottom"
+                android:visibility="visible"
+                android:layout_alignTop="@+id/q02o01_greenBox"
+                android:layout_alignLeft="@+id/q02o01_greenBox"
+                android:layout_alignStart="@+id/q02o01_greenBox"/>
+
+            // red box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q02o03_redBox"
+                android:src="@drawable/box_red"
+                android:alpha="1"
+                android:layout_gravity="left|center_vertical"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_alignRight="@+id/q02o01_greenBox"
+                android:layout_alignEnd="@+id/q02o01_greenBox"/>
+
+
+            // blue box
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/q02o04_blueBox"
+                android:src="@drawable/box_blue"
+                android:alpha="1"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_alignLeft="@+id/q02o02_yellowBox"
+                android:layout_alignStart="@+id/q02o02_yellowBox"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    //Clickable Options
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/questOptionsClickable"
+        android:visibility="visible">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="OPTION 1"
+            android:id="@+id/btnOpt01"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="25dp"
+            android:onClick="onClickBtn1"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="OPTION 2"
+            android:id="@+id/btnOpt02"
+            android:layout_alignTop="@+id/btnOpt01"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="25dp"
+            android:layout_alignParentTop="true"
+            android:onClick="onClickBtn2"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="OPTION 3"
+            android:id="@+id/btnOpt03"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="25dp"
+            android:onClick="onClickBtn3"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="OPTION 4"
+            android:id="@+id/btnOpt04"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="25dp"
+            android:onClick="onClickBtn4"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/viewableOptions"
+        android:id="@+id/topPanel">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCORE"
+            android:id="@+id/tvScore"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question"
+            android:id="@+id/tvQuestion"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="level"
+            android:id="@+id/tvLevel" />
+    </RelativeLayout>
+
+</RelativeLayout>
