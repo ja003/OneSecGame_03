@@ -21,7 +21,8 @@ public class LevelActivity extends Activity {
     public static int answer;
     public static int questNum;
     public final int WIN_SCORE = 5;
-    public final int LOSE_SCORE = -1;
+    public final int LOSE_SCORE = -10;
+    public static boolean checked;
 
     public static TextView tvQuestion;
     public static TextView tvScore;
@@ -45,7 +46,7 @@ public class LevelActivity extends Activity {
         game.clickableOptions = (RelativeLayout) findViewById(R.id.clickableOptions);
         game.topPanel = (RelativeLayout) findViewById(R.id.topPanel);
         game.viewableOptionsField = new RelativeLayout[5][6];
-        game.viewableOptionsField[1][1] = (RelativeLayout) findViewById(R.id.viewableOpt_01_01);
+        game.viewableOptionsField[1][1] = (RelativeLayout) findViewById(R.id.viewableOpt_01_01);        //can not use findViwById anywhere else but in onCreate...otherwise crashes
         game.viewableOptionsField[1][2] = (RelativeLayout) findViewById(R.id.viewableOpt_01_02);
         game.viewableOptionsField[1][3] = (RelativeLayout) findViewById(R.id.viewableOpt_01_03);
         game.viewableOptionsField[1][4] = (RelativeLayout) findViewById(R.id.viewableOpt_01_04);
@@ -63,6 +64,7 @@ public class LevelActivity extends Activity {
         score = 0;
         answer = 1;
         questNum = 1;
+        checked = false;
 
         //show top panel
         topPanel.setVisibility(View.VISIBLE);
@@ -85,11 +87,9 @@ public class LevelActivity extends Activity {
         correctAnswersField[1][5] = 4;
 
 
-
-        //tvScore.setText(""+score);
-
        generateQuestion();
     }
+
 
     public void generateQuestion(){
 
@@ -98,16 +98,17 @@ public class LevelActivity extends Activity {
         Random random = new Random();
         final int questNum = random.nextInt(4)+1;
         this.questNum = questNum;
+        checked = false;
         //System.out.println(questNum + this.questNum);
         tvLevel.setText(""+level);
         tvScore.setText(""+score);
-        Handler handler = new Handler();
 
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 tvQuestion.setVisibility(View.VISIBLE);
-                tvQuestion.setText(""+getQuestion(level,questNum));
+                tvQuestion.setText("" + getQuestion(level, questNum));
             }
         },1000);
 
@@ -121,6 +122,14 @@ public class LevelActivity extends Activity {
             }
         },2000);
 
+        //if user doesn't select any option in time
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(!checked)
+                wrongAnswer();
+            }
+        },5000);
 
     }
 
@@ -145,24 +154,35 @@ public class LevelActivity extends Activity {
 
     public void onClickBtn1(View view){
         answer = 1;
+        checked = true;
         checkAnswer();
         generateQuestion();
     }
 
     public void onClickBtn2(View view){
         answer = 2;
+        checked = true;
         checkAnswer();
         generateQuestion();
     }
 
     public void onClickBtn3(View view){
         answer = 3;
+        checked = true;
         checkAnswer();
         generateQuestion();
     }
 
     public void onClickBtn4(View view){
         answer = 4;
+        checked = true;
+        checkAnswer();
+        generateQuestion();
+    }
+
+    public void wrongAnswer(){
+        answer = -1;
+        checked = true;
         checkAnswer();
         generateQuestion();
     }
