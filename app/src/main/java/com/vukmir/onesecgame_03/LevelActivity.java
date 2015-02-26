@@ -2,6 +2,7 @@ package com.vukmir.onesecgame_03;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.HandlerThread;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,24 +39,20 @@ public class LevelActivity extends Activity {
         setContentView(R.layout.activity_level);
 
 
-        LevelActivity game = new LevelActivity();
 
-        game.tvQuestion = (TextView) findViewById(R.id.tvQuestion);
-        game.tvScore = (TextView) findViewById(R.id.tvScore);
-        game.tvLevel = (TextView) findViewById(R.id.tvLevel);
-        game.clickableOptions = (RelativeLayout) findViewById(R.id.clickableOptions);
-        game.topPanel = (RelativeLayout) findViewById(R.id.topPanel);
-        game.viewableOptionsField = new RelativeLayout[5][6];
-        game.viewableOptionsField[1][1] = (RelativeLayout) findViewById(R.id.viewableOpt_01_01);        //can not use findViwById anywhere else but in onCreate...otherwise crashes
-        game.viewableOptionsField[1][2] = (RelativeLayout) findViewById(R.id.viewableOpt_01_02);
-        game.viewableOptionsField[1][3] = (RelativeLayout) findViewById(R.id.viewableOpt_01_03);
-        game.viewableOptionsField[1][4] = (RelativeLayout) findViewById(R.id.viewableOpt_01_04);
-        game.viewableOptionsField[1][5] = (RelativeLayout) findViewById(R.id.viewableOpt_01_05);
+        tvQuestion = (TextView) findViewById(R.id.tvQuestion);
+        tvScore = (TextView) findViewById(R.id.tvScore);
+        tvLevel = (TextView) findViewById(R.id.tvLevel);
+        clickableOptions = (RelativeLayout) findViewById(R.id.clickableOptions);
+        topPanel = (RelativeLayout) findViewById(R.id.topPanel);
+        viewableOptionsField = new RelativeLayout[5][6];
+        viewableOptionsField[1][1] = (RelativeLayout) findViewById(R.id.viewableOpt_01_01);        //can not use findViwById anywhere else but in onCreate...otherwise crashes
+        viewableOptionsField[1][2] = (RelativeLayout) findViewById(R.id.viewableOpt_01_02);
+        viewableOptionsField[1][3] = (RelativeLayout) findViewById(R.id.viewableOpt_01_03);
+        viewableOptionsField[1][4] = (RelativeLayout) findViewById(R.id.viewableOpt_01_04);
+        viewableOptionsField[1][5] = (RelativeLayout) findViewById(R.id.viewableOpt_01_05);
 
-        game.startGame();
-
-
-
+        startGame();
     }
 
 
@@ -65,6 +62,7 @@ public class LevelActivity extends Activity {
         answer = 1;
         questNum = 1;
         checked = false;
+
 
         //show top panel
         topPanel.setVisibility(View.VISIBLE);
@@ -96,12 +94,14 @@ public class LevelActivity extends Activity {
         checkScore();
 
         Random random = new Random();
-        final int questNum = random.nextInt(4)+1;
+        final int questNum = random.nextInt(4) + 1;
         this.questNum = questNum;
         checked = false;
+
+        //while(!checked) {
         //System.out.println(questNum + this.questNum);
-        tvLevel.setText(""+level);
-        tvScore.setText(""+score);
+        tvLevel.setText("" + level);
+        tvScore.setText("" + score);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -110,8 +110,7 @@ public class LevelActivity extends Activity {
                 tvQuestion.setVisibility(View.VISIBLE);
                 tvQuestion.setText("" + getQuestion(level, questNum));
             }
-        },1000);
-
+        }, 1000);
 
 
         handler.postDelayed(new Runnable() {
@@ -120,18 +119,21 @@ public class LevelActivity extends Activity {
                 clickableOptions.setVisibility(View.VISIBLE);
                 viewableOptionsField[level][questNum].setVisibility(View.VISIBLE);
             }
-        },2000);
+        }, 2000);
 
-        //if user doesn't select any option in time
+
+        //if player doesn't select any option in time
+        /*
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(!checked)
-                wrongAnswer();
+                if (!checked)
+                    wrongAnswer();
             }
-        },5000);
-
+        }, 5000);
+        */
     }
+
 
     public void checkScore(){
         if(score > WIN_SCORE){
@@ -157,6 +159,8 @@ public class LevelActivity extends Activity {
         checked = true;
         checkAnswer();
         generateQuestion();
+
+
     }
 
     public void onClickBtn2(View view){
